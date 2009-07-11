@@ -1,0 +1,18 @@
+#!/bin/sh
+
+topdir="`dirname $0`/.."
+
+HTTP_BUILDER=${topdir}/../http-builder-0.5.0-RC1
+
+CLASSPATH="${CLASSPATH}:${topdir}"
+
+for jar in `find ${HTTP_BUILDER}/target -name *.jar`; do
+    CLASSPATH="${CLASSPATH}:$jar"
+done
+
+#echo "Using CLASSPATH=${CLASSPATH}"
+
+export CLASSPATH=$CLASSPATH
+
+groovy $@
+
